@@ -2,8 +2,8 @@
 Second try, I hate cargo.
 
 Goals:
-* Installation 
-* Hello World
+* ~~Installation~~
+* ~~Hello World~~
 * Simple, minimal library example
 
 
@@ -64,3 +64,6 @@ I think they're making up words.
 ```
 
 no, not weird, missed the `match`.
+
+Day 1 was rather frustrating; my dislike for package managers is clouding my judgement and experience. I have an obfuscated dependecy tree for simple RNG. `cargo tree` at least offers some transparency.
+
