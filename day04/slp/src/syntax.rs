@@ -1,11 +1,11 @@
 // The syntax of the Straight-Line Program
-pub mod syntax
-{
+// pub mod syntax
+// {
     // Alias for strings
-    type Id = String;
+    pub type Id = String;
 
     // Binary operators
-    enum BinOp
+    pub enum BinOp
     {
         Plus,
         Minus,
@@ -14,19 +14,36 @@ pub mod syntax
     }
 
     // Statements
-    enum Stm
+    pub enum Stm
     {
         CompoundStm( Box<Stm>, Box<Stm> ),
-        AssignStm( Id, Exp ),
-        PrintStm( ExpList )
+        AssignStm( Id, Box<Exp> ),
+        PrintStm( Box<ExpList> )
     }
 
     // Expressions
-    enum Exp
+    pub enum Exp
     {
         IdExp( Id ),
         NumExp( i32 ),
         OpExp( Box<Exp>, BinOp, Box<Exp> ),
-        EseqExp( Stm, Box<Exp> )
+        EseqExp( Box<Stm>, Box<Exp> )
     }
-}
+
+    // Expression list, lets play with ADT
+    enum List<A>
+    {
+        Nil,
+        Cons( A, Box<List<A>> )
+    }
+
+    pub type ExpList = List<Exp>;
+
+    // Macro to make life easier
+    #[macro_export] // why?
+    macro_rules! list[
+        ()                         => ( Nil );
+        ($x:expr)                  => ( Cons ( $x, box Nil ) );
+        ($x:expr, $($xs:expr), + ) => ( Cons( $x, box list!( $( $xs ), + )));
+    ];
+// }

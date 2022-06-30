@@ -69,4 +69,8 @@ Taken from *Modern Compiler Implementation in ML*, Appel et. al.
 
 `mod` = `#include` - LOL
 
-How to recursive types work in Rust?
+How to recursive types work in Rust? You have to work around the stupid borrow checker, fun. Maybe I'm an idiot but working *around* the type system to achieve recursive data types is stupid.
+
+Macros need to be brought explicitly into scope with  `#[macro_export]` - why?
+
+Even the simpliest things add undue amount of noise to the code.
