@@ -68,3 +68,5 @@ Lets do a Straight-Line Program.
 Taken from *Modern Compiler Implementation in ML*, Appel et. al.
 
 `mod` = `#include` - LOL
+
+How to recursive types work in Rust?
