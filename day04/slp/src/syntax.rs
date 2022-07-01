@@ -31,7 +31,7 @@
     }
 
     // Expression list, lets play with ADT
-    enum List<A>
+    pub enum List<A>
     {
         Nil,
         Cons( A, Box<List<A>> )

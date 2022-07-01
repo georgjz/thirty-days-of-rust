@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Day 04.md",
+            "file": "Day 05.md",
             "mode": "source",
             "source": false
           }
@@ -70,7 +70,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Day 04.md",
+                "file": "Day 05.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -90,6 +90,7 @@
   },
   "active": "38370174fc0559ea",
   "lastOpenFiles": [
+    "Day 05.md",
     "Day 04.md",
     "Day 03.md",
     "Day 02.md",
