@@ -16,9 +16,10 @@
     // Statements
     pub enum Stm
     {
-        CompoundStm( Box<Stm>, Box<Stm> ),
-        AssignStm( Id, Box<Exp> ),
-        PrintStm( Box<ExpList> )
+        CompoundStm( &Stm, &Stm ),
+        AssignStm( Id, &Exp ),
+        // PrintStm( Box<ExpList> )
+        PrintStm( ExpList )
     }
 
     // Expressions
@@ -26,10 +27,11 @@
     {
         IdExp( Id ),
         NumExp( i32 ),
-        OpExp( Box<Exp>, BinOp, Box<Exp> ),
-        EseqExp( Box<Stm>, Box<Exp> )
+        OpExp( &Exp, BinOp, &Exp ),
+        EseqExp( &Stm, &Exp )
     }
 
+    // FIXME: This compiles, but can't be called for some reason
     // Expression list, lets play with ADT
     pub enum List<A>
     {
@@ -37,7 +39,8 @@
         Cons( A, Box<List<A>> )
     }
 
-    pub type ExpList = List<Exp>;
+    // pub type ExpList = List<Exp>;
+    pub type ExpList = Vec<Exp>;
 
     // Macro to make life easier
     #[macro_export] // why?
