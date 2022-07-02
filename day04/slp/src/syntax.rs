@@ -16,8 +16,8 @@
     // Statements
     pub enum Stm
     {
-        CompoundStm( Box<Stm>, Box<Stm> ),
-        AssignStm( Id, Box<Exp> ),
+        CompoundStm( &Stm, &Stm ),
+        AssignStm( Id, &Exp ),
         // PrintStm( Box<ExpList> )
         PrintStm( ExpList )
     }
@@ -27,8 +27,8 @@
     {
         IdExp( Id ),
         NumExp( i32 ),
-        OpExp( Box<Exp>, BinOp, Box<Exp> ),
-        EseqExp( Box<Stm>, Box<Exp> )
+        OpExp( &Exp, BinOp, &Exp ),
+        EseqExp( &Stm, &Exp )
     }
 
     // FIXME: This compiles, but can't be called for some reason
