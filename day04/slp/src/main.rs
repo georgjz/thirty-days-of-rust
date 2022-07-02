@@ -4,6 +4,14 @@ use crate::syntax::BinOp::*;
 use crate::syntax::Stm::*;
 use crate::syntax::Exp::*;
 
+fn maxargs( stm: Stm ) -> i32
+{
+    match stm
+    {
+        CompoundStm( stm1, stm2 ) => { std::cmp::max( maxargs( *stm.1, *stm.2 ) ) }
+    }
+}
+
 fn main()
 {
     // The test program to run
