@@ -8,7 +8,10 @@ fn maxargs( stm: Stm ) -> i32
 {
     match stm
     {
-        CompoundStm( stm1, stm2 ) => { std::cmp::max( maxargs( *stm.1, *stm.2 ) ) }
+        CompoundStm( stm1, stm2 )           => { std::cmp::max( maxargs( *stm1 ), maxargs( *stm2 ) ) },
+        AssignStm( _, Box<EseqExp( stm, _ )> )  => { maxargs( stm ) },
+        AssignStm( _, _ )                   => { 0 },
+        PrintStm( exps )                    => { i32::from( exps.len() ) }
     }
 }
 
@@ -32,5 +35,6 @@ fn main()
     // let foo = PrintStm( Box::new( vec![ IdExp( "a".to_string() ) ] ) );
     let foo = PrintStm( vec![ IdExp( "a".to_string() ) ] );
 
+    println!( "{}", maxargs( prog ) );
     println!( "Hail Satan" );
 }
