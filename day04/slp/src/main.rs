@@ -1,5 +1,8 @@
 #![feature(box_patterns)] // this feature is not stable yet
+
 mod syntax;
+mod table;
+
 use crate::syntax::*;
 use crate::syntax::BinOp::*;
 use crate::syntax::Stm::*;
