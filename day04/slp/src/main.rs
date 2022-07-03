@@ -1,4 +1,4 @@
-//#![feature(box_patterns)] // this feature is not stable yet
+#![feature(box_patterns)] // this feature is not stable yet
 mod syntax;
 use crate::syntax::*;
 use crate::syntax::BinOp::*;
@@ -9,10 +9,10 @@ fn maxargs( stm: Stm ) -> i32
 {
     match stm
     {
-        CompoundStm( stm1, stm2 )                 => { std::cmp::max( maxargs( *stm1 ), maxargs( *stm2 ) ) },
-        AssignStm( _, box EseqExp( stm, _ ) )  => { maxargs( stm ) },
-        AssignStm( _, _ )                         => { 0 },
-        PrintStm( exps )                          => { i32::from( exps.len() ) }
+        CompoundStm( stm1, stm2 )              => { std::cmp::max( maxargs( *stm1 ), maxargs( *stm2 ) ) },
+        AssignStm( _, box EseqExp( stm, _ ) )  => { maxargs( *stm ) },
+        AssignStm( _, _ )                      => { 0 },
+        PrintStm( exps )                       => { exps.len() as i32 }
     }
 }
 
@@ -30,12 +30,7 @@ fn main()
                                                                  Box::new( OpExp( Box::new( NumExp( 10 ) ), Times, Box::new( IdExp( "a".to_string() ) ) ) ) ) ) ) ),
                     // print( b )
                     Box::new( PrintStm( vec![ IdExp( "b".to_string() ) ] ) ) ) ) );
-        //  )
-        // );
 
-    // let foo = PrintStm( Box::new( vec![ IdExp( "a".to_string() ) ] ) );
-    let foo = PrintStm( vec![ IdExp( "a".to_string() ) ] );
-
-    println!( "{}", maxargs( prog ) );
+    println!( "margs( prog ): {}", maxargs( prog ) );
     println!( "Hail Satan" );
 }
