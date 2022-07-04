@@ -45,7 +45,8 @@ fn interpStm( stm: Stm, table: Table ) -> Table
 
         PrintStm( exps )  =>
         {
-            let mut new_table = table.clone();
+            // let mut new_table = table.clone();
+            let new_table = table.clone();
             for exp in exps
             {
                 let (value, new_table) = interpExp( exp, &new_table );
