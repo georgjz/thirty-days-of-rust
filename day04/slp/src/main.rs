@@ -23,7 +23,6 @@ fn maxargs( stm: &Stm ) -> i32
 // Actual interpreter functions
 fn interp( stm: Stm )
 {
-    // let table = Table::new();
     interpStm( stm, Table::new() );
 }
 
