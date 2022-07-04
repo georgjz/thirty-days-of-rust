@@ -45,11 +45,11 @@ fn interpStm( stm: Stm, table: Table ) -> Table
 
         PrintStm( exps )  =>
         {
-            // let mut new_table = table.clone();
-            let new_table = table.clone();
+            let mut new_table = table.clone();
             for exp in exps
             {
-                let (value, new_table) = interpExp( exp, &new_table );
+                let (value, foo) = interpExp( exp, &new_table );
+                new_table = foo;
                 print!( "{} ", value );
             }
             // exps.iter().map( |exp| println!("{} ", interpExp( exp, &table ).0 ) );
