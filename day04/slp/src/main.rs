@@ -91,14 +91,7 @@ fn main()
 
     println!( "margs( prog ): {}", maxargs( &prog ) );
 
-    // test table
-    // let mut table = Table::new();
-    // println!( "Number of entries: {}", table.len() );
-    // table = update( table, "a".to_string(), 5 );
-    // println!( "Number of entries: {}", table.len() );
-    // println!( "Value of a in symbol table: {}", lookup( &table, "a".to_string() ) );
     interp( prog );
-
 
     println!( "Hail Satan" );
 }
