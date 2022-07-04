@@ -9,18 +9,24 @@ use crate::syntax::Stm::*;
 use crate::syntax::Exp::*;
 use crate::table::*;
 
-fn maxargs( stm: Stm ) -> i32
+fn maxargs( stm: &Stm ) -> i32
 {
     match stm
     {
-        CompoundStm( stm1, stm2 )              => { std::cmp::max( maxargs( *stm1 ), maxargs( *stm2 ) ) },
-        AssignStm( _, box EseqExp( stm, _ ) )  => { maxargs( *stm ) },
+        CompoundStm( stm1, stm2 )              => { std::cmp::max( maxargs( &*stm1 ), maxargs( &*stm2 ) ) },
+        AssignStm( _, box EseqExp( stm, _ ) )  => { maxargs( &*stm ) },
         AssignStm( _, _ )                      => { 0 },
         PrintStm( exps )                       => { exps.len() as i32 }
     }
 }
 
 // Actual interpreter functions
+fn interp( stm: Stm )
+{
+    // let table = Table::new();
+    interpStm( stm, Table::new() );
+}
+
 fn interpStm( stm: Stm, table: Table ) -> Table
 {
     match stm
@@ -39,28 +45,32 @@ fn interpStm( stm: Stm, table: Table ) -> Table
 
         PrintStm( exps )  =>
         {
+            let mut new_table = table.clone();
             for exp in exps
             {
-                let (value, _) = interpExp( exp, &table );
-                println!( "{} ", value );
+                let (value, new_table) = interpExp( exp, &new_table );
+                print!( "{} ", value );
             }
             // exps.iter().map( |exp| println!("{} ", interpExp( exp, &table ).0 ) );
             println!( "" );
-            table
+            new_table
         }
     }
 }
 
 fn interpExp( exp: Exp, table: &Table ) -> (i32, Table)
 {
-    // let new_table = Table::new();
+    let new_table = table.clone();
     match exp
     {
-        IdExp( id ) => { let table_copy = *table; (lookup( &table, id ), table_copy) },
-        IdExp( id ) => { (lookup( &table, id ), table_copy) },
-        _ => (666, *table)
+        IdExp( id )              => { (lookup( &table, id ), new_table) },
+        NumExp( value )          => { (value, new_table) },
+        OpExp( lhs, Plus, rhs )  => { (interpExp( *lhs, &new_table ).0 + interpExp( *rhs, &new_table ).0, new_table) },
+        OpExp( lhs, Minus, rhs ) => { (interpExp( *lhs, &new_table ).0 - interpExp( *rhs, &new_table ).0, new_table) },
+        OpExp( lhs, Times, rhs ) => { (interpExp( *lhs, &new_table ).0 * interpExp( *rhs, &new_table ).0, new_table) },
+        OpExp( lhs, Div, rhs )   => { (interpExp( *lhs, &new_table ).0 / interpExp( *rhs, &new_table ).0, new_table) },
+        EseqExp( stm, exp )      => { interpExp( *exp, &interpStm( *stm, new_table ) )  }
     }
-    // (666, new_table)
 }
 
 // main
@@ -79,14 +89,15 @@ fn main()
                     // print( b )
                     Box::new( PrintStm( vec![ IdExp( "b".to_string() ) ] ) ) ) ) );
 
-    println!( "margs( prog ): {}", maxargs( prog ) );
+    println!( "margs( prog ): {}", maxargs( &prog ) );
 
     // test table
-    let mut table = Table::new();
-    println!( "Number of entries: {}", table.len() );
-    table = update( table, "a".to_string(), 5 );
-    println!( "Number of entries: {}", table.len() );
-    println!( "Value of a in symbol table: {}", lookup( &table, "a".to_string() ) );
+    // let mut table = Table::new();
+    // println!( "Number of entries: {}", table.len() );
+    // table = update( table, "a".to_string(), 5 );
+    // println!( "Number of entries: {}", table.len() );
+    // println!( "Value of a in symbol table: {}", lookup( &table, "a".to_string() ) );
+    interp( prog );
 
 
     println!( "Hail Satan" );
