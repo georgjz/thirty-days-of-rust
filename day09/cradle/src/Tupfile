@@ -1,0 +1,16 @@
+# Common rules for all tupfiles
+include_rules
+
+# : Main.rs \
+#     |> $(RCM)
+
+
+# # Compile Scheme to C
+# : m3.scm \
+#   |> !compile-scm-to-c \
+#   |> %B.c $(TOP)/<scm-c>
+
+# # Compile C files
+# : m3.c \
+#   |> $(SCM) $(SCMFLAGS) -obj %f \
+#   |> m3.o $(TOP)/<objs>
