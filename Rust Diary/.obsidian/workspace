@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Day 08.md",
+            "file": "Day 09.md",
             "mode": "source",
             "source": false
           }
@@ -53,8 +53,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "bd2e3e6cc918b459",
@@ -70,7 +69,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Day 08.md",
+                "file": "Day 09.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -90,6 +89,7 @@
   },
   "active": "38370174fc0559ea",
   "lastOpenFiles": [
+    "Day 09.md",
     "Day 08.md",
     "Day 07.md",
     "Day 02.md",
