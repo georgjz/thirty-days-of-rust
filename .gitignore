@@ -1,5 +1,6 @@
 *.exe
 *.pdb
 *.lock
+*.rlib
 build-*/
 target/
