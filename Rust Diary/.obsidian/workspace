@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Day 10.md",
+            "file": "RIA.md",
             "mode": "source",
             "source": false
           }
@@ -69,7 +69,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Day 10.md",
+                "file": "RIA.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -89,6 +89,8 @@
   },
   "active": "38370174fc0559ea",
   "lastOpenFiles": [
+    "RIA.md",
+    "Day 11.md",
     "Day 10.md",
     "Day 09.md",
     "Day 08.md",
@@ -96,8 +98,6 @@
     "Day 02.md",
     "Day 01.md",
     "Day 06.md",
-    "Day 04.md",
-    "Day 03.md",
-    "Day 05.md"
+    "Day 04.md"
   ]
 }
