@@ -1,6 +1,0 @@
-# Common rules for all tupfiles
-include_rules
-
-: src/Main.rs \
-    |> $(RCM) %f \
-    |> %B.exe

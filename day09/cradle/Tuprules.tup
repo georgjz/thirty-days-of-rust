@@ -1,9 +1,0 @@
-# Rust Compiler settings
-# ----------------------
-RCM = rustc
-RCMFLAGS =
-
-ifeq (@(DEBUG_INFO),y)
-RCMFLAGS += -g -v
-endif
-
